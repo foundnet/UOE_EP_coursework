@@ -1,19 +1,25 @@
+echo "************************************************************************"
+echo "*                                                                      *"
+echo "*                   Task 4          EXC Coursework 2                   *"
+echo "*                                                                      *"
+echo "************************************************************************"
+
 set fileformat = UNIX
 export STREAM=/opt/hadoop/hadoop-2.7.3/share/hadoop/tools/lib/hadoop-streaming-2.7.3.jar > /dev/null
 export RPATH=/user/$USER/assign2/data
 
-task=task1
-filename=./*.txt
+task=task4
+filename=/data/assignments/ex2/part3/webLarge.txt
 
 echo --Remote folder and file preparation
 hdfs dfs -rm -r $RPATH/input/$task > /dev/null 2>&1
 hdfs dfs -rm -r $RPATH/output/$task > /dev/null 2>&1
 hdfs dfs -mkdir $RPATH/input/$task
-hdfs dfs -copyFromLocal $filename $RPATH/input/$task/
+hdfs dfs -cp $filename $RPATH/input/$task/
 echo done!
 
 echo --Run hadoop command
-hadoop jar $STREAM -D stream.num.map.output.key.fields=2 -D num.key.fields.for.partition=1 -mapper mapper.py -combiner combiner.py -reducer "cat" -input $RPATH/input/$task -output $RPATH/output/$task -file mapper.py -file combiner.py -file reducer.py 
+hadoop jar $STREAM -mapper mapper.py -reducer reducer.py -input $RPATH/input/$task -output $RPATH/output/$task -file mapper.py -file reducer.py -numReduceTasks 1
 
 echo --Output files
 rm -r ../../../Result/$task > /dev/null 2>&1

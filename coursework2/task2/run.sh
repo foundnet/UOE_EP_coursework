@@ -1,9 +1,15 @@
+echo "************************************************************************"
+echo "*                                                                      *"
+echo "*                   Task 2          EXC Coursework 2                   *"
+echo "*                                                                      *"
+echo "************************************************************************"
+
 set fileformat = UNIX
 export STREAM=/opt/hadoop/hadoop-2.7.3/share/hadoop/tools/lib/hadoop-streaming-2.7.3.jar > /dev/null
 export RPATH=/user/$USER/assign2/data
 
 task=task2
-filename=/data/assignments/ex2/part2/stackSmall.txt
+filename=/data/assignments/ex2/part2/stackLarge.txt
 
 echo --Remote folder and file preparation
 hdfs dfs -rm -r $RPATH/input/$task > /dev/null 2>&1

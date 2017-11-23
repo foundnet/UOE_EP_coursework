@@ -1,6 +1,0 @@
-aaa bbb ccc ddd
-111 222 333 bbb
-aaa zzz www qqq
-112 223 113 112
-333 222 ggg
-

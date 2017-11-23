@@ -14,7 +14,7 @@ for line in sys.stdin:
         continue
     if str_aid != cur_aid:
         if cur_aid != "" and cur_qid != "" and cur_uid != "":
-            print cur_uid + "\t" + cur_qid
+            print cur_uid + "\t1\t" + cur_qid
         cur_aid = str_aid
         cur_qid = ""
         cur_uid = ""
@@ -28,5 +28,5 @@ for line in sys.stdin:
         cur_uid = str_id[1:]
         
 if cur_aid != "" and cur_qid != "" and cur_uid != "":
-    print cur_uid + "\t" + cur_qid
+    print cur_uid + "\t1\t" + cur_qid
  
