@@ -194,6 +194,8 @@ void runloop(int loopid)  {
       }
     }  
   }
+  free(plist);
+  free(pavail);
 }
 
 void loop1chunk(int lo, int hi) { 
